@@ -1,0 +1,79 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $table-bg;
+  border-radius: $table-radius;
+  overflow: hidden;
+  box-shadow: $table-shadow;
+  font-size: 0.95rem;
+
+  thead {
+    background-color: $gray;
+    color: $thead-color;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    input {
+      margin-top: 5px;
+      padding: 6px 8px;
+      width: 90%;
+      border-radius: 5px;
+      border: 1px solid $input-border;
+      font-size: 0.85rem;
+      color: $body-color;
+      background-color: $input-bg;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $input-focus-border;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(73, 80, 87, 0.4);
+      }
+    }
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  td {
+  white-space: nowrap;       /* Non andare a capo */
+  overflow: hidden;          /* Nasconde il testo in eccesso */
+  text-overflow: ellipsis;   /* Aggiunge "..." alla fine */
+  max-width: 200px;          /* Larghezza massima della cella */
+}
+
+
+
+  tbody tr {
+    &:hover {
+      background-color: $input-bg;
+      cursor: default;
+    }
+  }
+
+  th:nth-child(8), td:nth-child(8) {
+    min-width: 200px;
+    word-break: break-word;
+  }
+}
+
+
+.severity-low {
+  color: $green;
+  font-weight: 600;
+}
+
+.severity-medium {
+  color: $orange;
+  font-weight: 600;
+}
+
+.severity-high {
+  color: $red;
+  font-weight: 700;
+}
+

@@ -1,0 +1,41 @@
+@import 'variables';
+@import 'reset';
+@import 'table';
+@import 'pagination';
+@import 'responsive';
+@import 'flex';
+@import 'form';
+
+
+.error-code {
+    font-size: 5rem;
+    font-weight: 700;
+    color: $red;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 1.5rem;
+    color: map-get($colors, light-gray);
+    margin-bottom: 30px;
+}
+
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+    text-align: center;
+    background: $light;
+}
+
+.meerkat-alert {
+  font-size: 1.2rem;
+  color: $orange;
+  font-weight: 600;
+  margin: 20px 0;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}

@@ -1,0 +1,50 @@
+// Colors
+$body-bg: #f8f9fa;
+$body-color: #212529;
+
+
+// Base Colors Map
+$colors: (
+    light: #f8f9fa,
+    dark: #191919,
+    black: #000000,
+    gray: #303030,
+    light-gray: #404040,
+    red: #ff4343,
+    green: #1b9f61,
+    orange: #fd7e14
+);
+
+$light: #f8f9fa;
+$dark: #191919;
+$black: #000000;
+$gray: #303030;
+$light-gray: #404040;
+$red: #ff4343;
+$green: #1b9f61;
+$orange: #fd7e14;
+
+
+$table-bg: #fff;
+$table-radius: 8px;
+$table-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+$thead-bg: #495057;
+$thead-color: #f8f9fa;
+
+$input-bg: #f1f3f5;
+$input-border: #ced4da;
+$input-focus-border: #495057;
+
+// // $severity-low: #198754;
+// // $severity-medium: #fd7e14;
+// // $severity-high: $red;
+
+$pagination-bg: #495057;
+$pagination-color: #f8f9fa;
+$pagination-hover: #343a40;
+$pagination-disabled: #adb5bd;
+$pagination-active: #212529;
+
+// // Typography
+// $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
