@@ -25,12 +25,11 @@ function compactIPv6(ip) {
            .replace(/(:0){2,}/, '::') // Collapse consecutive zeros (simplistic)
            .replace(/::+/, '::'); // Ensure only one double colon
 }
-
 function renderTable(data) {
   const tableBody = document.querySelector('#data-table tbody');
   tableBody.innerHTML = '';
 
-  data.forEach(record => {
+  data.forEach((record, idx) => {
     let severityClass = '';
     const sev = record.alert?.severity;
     if (sev !== undefined) {
@@ -50,10 +49,50 @@ function renderTable(data) {
       <td class="${severityClass}">${sev !== undefined ? sev : 'N/A'}</td>
       <td>${record.alert?.signature || 'N/A'}</td>
       <td>${record.alert?.category || 'N/A'}</td>
+      <td>${record.in_iface || 'N/A'}</td>
+      <td><button class="raw-btn" data-idx="${idx}">Raw</button></td>
     `;
     tableBody.appendChild(row);
   });
+
+  // Aggiungi evento click per mostrare raw JSON
+  document.querySelectorAll('.raw-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.getAttribute('data-idx');
+      showRawModal(data[idx]);
+    });
+  });
 }
+
+// Funzione per mostrare il raw JSON in un popup/modal
+function showRawModal(record) {
+  let modal = document.getElementById('rawModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'rawModal';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.background = 'rgba(0,0,0,0.7)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = '9999';
+    modal.innerHTML = `
+      <div style="background:white; padding:20px; border-radius:10px; max-width:90%; max-height:80%; overflow:auto; position:relative;">
+        <button id="closeModal" style="position:absolute; top:10px; right:10px; background:#ef4444; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Chiudi</button>
+        <pre id="rawContent" style="white-space:pre-wrap;"></pre>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById('closeModal').addEventListener('click', () => modal.style.display = 'none');
+  }
+  document.getElementById('rawContent').textContent = JSON.stringify(record, null, 2);
+  modal.style.display = 'flex';
+}
+
 
 
     // Paginazione
@@ -101,7 +140,9 @@ function renderTable(data) {
         action: document.getElementById('filter-action')?.value.trim().toLowerCase() || '',
         severity: document.getElementById('filter-severity')?.value.trim() || '',
         signature: document.getElementById('filter-signature')?.value.trim().toLowerCase() || '',
-        category: document.getElementById('filter-category')?.value.trim().toLowerCase() || ''
+        category: document.getElementById('filter-category')?.value.trim().toLowerCase() || '',
+        in_iface: document.getElementById('filter-in-iface')?.value.trim().toLowerCase() || ''
+
       };
 
       const filtered = allData.filter(record => {
@@ -114,6 +155,7 @@ function renderTable(data) {
         const recSeverity = record.alert?.severity !== undefined ? String(record.alert.severity) : '';
         const recSignature = record.alert?.signature?.toLowerCase() || '';
         const recCategory = record.alert?.category?.toLowerCase() || '';
+        const recIn = record.alert?.in_iface?.toLowerCase() || '';
 
         return recTimestamp.includes(filters.timestamp)
           && recSrc.includes(filters.src_ip)
@@ -123,7 +165,9 @@ function renderTable(data) {
           && recAction.includes(filters.action)
           && (!filters.severity || recSeverity === filters.severity)
           && recSignature.includes(filters.signature)
-          && recCategory.includes(filters.category);
+          && recCategory.includes(filters.category)
+          && recIn.includes(filters.in_iface);
+
       });
 
       const paginated = paginateData(filtered);

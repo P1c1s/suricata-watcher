@@ -19,10 +19,14 @@
         <div class="top-navbar-title">Suricata Watcher</div>
       </div>
     </div>
+    <div class="row">
+      <div class="col"><a href="file.php" style="color: white">FILE</a></div>
+      <div class="col"><a href="traffic.php" style="color: white; margin-left: 10px">T</a></div>
+    </div>
     <div class="nav-links">
       <button id="sniffer-button" value="true" class="btn btn-green">Live update ON</button>
       <form action="index.php" method="POST" style="display:inline;">
-        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+        <input type="hidden" id="csrf_token" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         <button type="submit" name="logout" class="btn btn-red">Logout</button>
       </form>
     </div>
@@ -36,6 +40,7 @@
         <thead>
           <tr>
             <?php
+            
             $columns = [
               'Data' => 'timestamp',
               'Source IP' => 'src-ip',
@@ -45,7 +50,8 @@
               'Action' => 'action',
               'Severity' => 'severity',
               'Signature' => 'signature',
-              'Category' => 'category'
+              'Category' => 'category',
+              'Interface' => 'in_iface'
             ];
 
             foreach ($columns as $label => $id) {
@@ -54,6 +60,8 @@
               echo "<th>$label<br /><input type=\"$type\" id=\"filter-$id\" placeholder=\"Filtra $label\" $min /></th>";
             }
             ?>
+            <th>Raw</th> 
+
           </tr>
         </thead>
         <tbody></tbody>
