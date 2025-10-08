@@ -1,0 +1,96 @@
+// Breakpoints
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+// Gutter
+$gutter: 15px;
+
+// Flex percentuali
+$flex: (
+  1: 8.333333%,
+  2: 16.666667%,
+  3: 25%,
+  4: 33.333333%,
+  5: 41.666667%,
+  6: 50%,
+  7: 58.333333%,
+  8: 66.666667%,
+  9: 75%,
+  10: 83.333333%,
+  11: 91.666667%,
+  12: 100%
+);
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.main-container{
+  // margin-left: auto;
+  // margin-right: auto;
+  box-sizing: border-box;
+}
+
+// .container, .container-fluid {
+//   width: 100%;
+//   padding-left: $gutter;
+//   padding-right: $gutter;
+//   margin-left: auto;
+//   margin-right: auto;
+//   box-sizing: border-box;
+
+//   @each $break, $max in $container-max-widths {
+//     @media (min-width: $max) {
+//       max-width: $max;
+//     }
+//   }
+// }
+
+// -----------------
+// Row & Column
+// -----------------
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+  border: 1px solid salmon;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  padding-left: $gutter;
+  padding-right: $gutter;
+  flex: 1 1 auto;
+}
+
+// Colonne percentuali
+@each $name, $size in $flex {
+  .col-#{$name} {
+    flex: 0 0 $size;
+    max-width: $size;
+  }
+}
+
+// -----------------
+// Utilities
+// -----------------
+.justify-content-center { display: flex; justify-content: center; }
+.align-center { display: flex; align-items: center; }
+.center { display: flex; justify-content: center; align-items: center; }

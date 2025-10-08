@@ -1,19 +1,19 @@
 <?php
-include_once 'config/config.php';
+include_once __DIR__ . '/../config/config.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <?php include_once 'head.php'; ?>
+  <?php include_once ROOT_PATH . 'includes/head.php'; ?>
   <title>Suricata Watcher | Login</title>
 </head>
 
 <body>
 
 <div class="login-box">
-    <img class="form-logo" src="suricata.svg" alt="Suricata logo">
+    <img class="form-logo" src="<?= BASE_URL ?>assets/img/suricata.svg" alt="Suricata logo">
 
     <div class="form-container">
         <form method="post" class="form-card">
@@ -25,8 +25,8 @@ include_once 'config/config.php';
             
             <button type="submit" class="btn btn-gray">Unlock</button>
             
-        <?php if (isset($errore)): ?>
-            <p class="error"><?= $errore ?></p>
+        <?php if (isset($error)): ?>
+            <p class="form-error"><?= $error ?></p>
         <?php endif; ?>
 
         </form>

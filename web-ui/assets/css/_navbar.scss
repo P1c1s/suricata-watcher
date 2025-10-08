@@ -1,0 +1,109 @@
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 42px;
+  background-color: #c8d0dc;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  border-bottom: 1px solid #000000;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sezioni */
+.navbar-left,
+.navbar-center,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Titolo */
+.navbar .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Divider */
+.divider {
+  width: 1px;
+  height: 25px;
+  background-color: #9ca3af;
+  margin: 0 15px;
+}
+
+/* Orologio e hostname */
+.navbar .clock {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.navbar .hostname {
+  font-size: 0.95rem;
+  color: #374151;
+  letter-spacing: 0.5px;
+}
+
+/* Icone a destra */
+.navbar-right i {
+  font-size: 1.3rem;
+  color: #1f2937;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-right i:hover {
+  color: #111827;
+}
+
+/* Badge notifiche */
+.notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.notification::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 2px 5px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .navbar-center {
+    margin: 5px 0;
+  }
+}
+
+
+.navbar img{
+  height: 30px;
+  width: 30px;
+}

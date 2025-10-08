@@ -1,41 +1,4 @@
 // =====================
-// 🔒 LOCK SCREEN INDEX
-// =====================
-document.addEventListener("DOMContentLoaded", function () {
-    if (document.body.id === "page-index") {
-        let timeout;
-
-        function resetTimer() {
-            clearTimeout(timeout);
-            timeout = setTimeout(logoutUser, 120 * 1000); // 120 seconds
-        }
-        function logoutUser() {
-
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = "index.php";
-            form.id = "lock_screen";
-
-            form.innerHTML = `
-                <input type="hidden" name="lock_screen" value="true">
-                <input type="hidden" name="csrf_token" value="${document.getElementById("csrf_token").value}">
-            `;
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-
-        // Eventi che indicano attività dell'utente
-        ["load", "mousemove", "keypress", "scroll", "click", "touchstart"].forEach(event => {
-            window.addEventListener(event, resetTimer);
-        });
-
-        resetTimer(); // Avvia subito
-    }
-});
-
-
-// =====================
 // 🐾 MEERKAT ALERT 403
 // =====================
 document.addEventListener("DOMContentLoaded", function () {

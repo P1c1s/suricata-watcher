@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Container principale */
+.main-container {
+  display: flex;
+  position: fixed;
+  top: 42px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+
+/* Main content */
+.main-content {
+  flex: 1;
+  background-color: #f3f4f6;
+  padding: 0px;
+  transition: margin-left 0.3s ease;
+  overflow: scroll;
+}
+
+.content{
+  margin: 10px;
+}

@@ -1,18 +1,13 @@
 RewriteEngine On
 
-# Custom 404 page
-ErrorDocument 404 /404.php
+# Custom error pages
+ErrorDocument 403 /pages/403.php
+ErrorDocument 404 /pages/404.php
+ErrorDocument 500 /pages/500.php
 
-# Rewrite all .php files to "clean" URLs without the .php extension
-# Only apply if the requested URL is not an existing directory or file
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+# Blocca accesso a tutti i file che non siano .php, permetti CSS, JS, immagini, font
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !\.php$ [NC]
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$ [NC]
+RewriteRule ^.*$ - [F,L]
 
-# Redirect direct .php requests to the clean URL version
-# e.g., /login.php → /login
-# RewriteCond %{THE_REQUEST} /([a-zA-Z0-9_-]+)\.php [NC]
-# RewriteRule ^([a-zA-Z0-9_-]+)\.php$ /$1 [L,R=301]
-
-# Set index.php as the default page for the root URL (/)
-# DirectoryIndex index.php

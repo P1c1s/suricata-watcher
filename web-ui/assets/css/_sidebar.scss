@@ -1,0 +1,68 @@
+/* Sidebar */
+.sidebar {
+  width: 60px; /* Miniatura sempre visibile */
+  background-color: #1f2937;
+  color: #fff;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+
+.sidebar.active {
+  width: 220px; /* Sidebar aperta */
+}
+
+/* Toggle button */
+.sidebar .toggle-btn {
+  background: #111827;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+/* Lista link */
+.sidebar ul {
+  list-style: none;
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.sidebar ul li a:hover {
+  background-color: #374151;
+}
+
+/* Icona con margine */
+.sidebar ul li a i {
+  margin-right: 10px;
+  min-width: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Nasconde il testo se sidebar è ridotta */
+.sidebar:not(.active) ul li a span {
+  display: none;
+}
+
+
+

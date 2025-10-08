@@ -39,3 +39,70 @@ The tool reads directly from the Suricata `eve.json` log file and presents it in
 2. Start suricata as `systemctl start suricata` or `service suricata start`
 3. Start apache2 as `systemctl start apache2` or `service apache2 start`
 
+#### Php classes
+
+```mermaid
+classDiagram
+    class SuricataReader {
+        - string token
+        - string filePath
+        + __construct(string token, string filePath)
+        + setAuthentication(bool check = true) void
+        + getLogs() array
+        + getLogsJson() void
+    }
+
+    class SuricataAnalyzer {
+        - array logs
+        + __construct(array logs)
+        + filterByEventType(string type) array
+        + getValidEvents() array
+        + getStats(string filePath) array
+    }
+    
+    SuricataReader --> server : "get data"
+    SuricataAnalyzer --> server : "analyze data"
+```
+
+#### JavaScript classes
+
+```mermaid
+classDiagram
+    class SuricataClient {
+        - string token
+        - string endpoint
+        - number refreshInterval
+        + constructor(token, endpoint)
+        + getLogs() Promise
+        + getStats() Promise
+        + startAutoRefresh(type, callback, intervalMs)
+        + stopAutoRefresh()
+    }
+
+    class EveTable {
+        - HTMLElement container
+        - Array columns
+        - Set visibleColumns
+        - Object filters
+        - number currentPage
+        - number rowsPerPage
+        - boolean autoRefreshActive
+        + constructor(containerSelector, columns, rowsPerPage)
+        + setAutoRefreshCallbacks(onStart, onStop)
+        + render(data)
+        - _formatDate(dateStr)
+        - _getNestedValue(obj, path)
+        - _filterData(data)
+    }
+
+    class EveCharts {
+        - HTMLElement container
+        - Object charts
+        + constructor(containerId)
+        + render(statsData)
+    }
+
+    SuricataClient --> EveTable : "get logs"
+    SuricataClient --> EveCharts : "get stats"
+
+``` 
