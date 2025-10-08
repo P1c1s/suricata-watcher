@@ -28,13 +28,13 @@ bash -c "cat > ${APACHE_CONF}" <<EOF
 <VirtualHost *:443>
     ServerName ${DOMAIN}
 
-    DocumentRoot /var/www/html
+    DocumentRoot /var/www/html/web-ui
 
     SSLEngine on
     SSLCertificateFile ${SSL_DIR}/${DOMAIN}.crt
     SSLCertificateKeyFile ${SSL_DIR}/${DOMAIN}.key
 
-    <Directory /var/www/html>
+    <Directory /var/www/html/web-ui>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
