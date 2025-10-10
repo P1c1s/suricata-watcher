@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="web-ui/suricata.svg" alt="Suricata Logo" width="168" height="270">
+  <img src="web-ui/assets/img/suricata.svg" alt="Suricata Logo" width="168" height="270">
   <br>
   <strong>What is Suricata?</strong>
   <br>
@@ -35,9 +35,10 @@ The tool reads directly from the Suricata `eve.json` log file and presents it in
 ## 🚀 Quick Start
 
 1. Copy the project files into your web server directory as `git clone https://github.com/P1c1s/suricata-watcher/ /var/www/html`
+2. modify `DOMAIN` in `suricata.sh`
+3. modify `define('BASE_URL', '<custom url>')` in `config/config.php`
+4. Run `.suricata.sh`
 
-2. Start suricata as `systemctl start suricata` or `service suricata start`
-3. Start apache2 as `systemctl start apache2` or `service apache2 start`
 
 #### Php classes
 
